@@ -1,0 +1,22 @@
+miskin=read.csv("C:/Users/Aurell/Documents/AURELL 2020/SEMESTER 4/KOMPSTAT/datamiskin.csv", sep=";", header=TRUE)
+miskin
+
+#bentuk matriks
+n=length(miskin$rata.rata.lama.sekolah_X1)
+n
+k=2
+z=cbind(rep(1,n),miskin$rata.rata.lama.sekolah_X1,miskin$kepadatan.penduduk_X2)
+z=as.matrix(z)
+z
+
+y=as.matrix(miskin$kemiskinan_Y1)
+y
+b=(solve(t(z)%*%z))%*%t(z)%*%y 
+b
+#solve=invers  %*% untuk perkalian matrix
+
+SSE = t(y)%*%y-t(b)%*%t(z)%*%y         
+SSE
+
+MSE = SSE/(n-k-1)
+MSE

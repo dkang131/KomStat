@@ -1,0 +1,34 @@
+uji_hipotesa <- function(data,mu0,pilihan,alpha){
+n <- length(data)
+sigma <- sd(data)
+xbar <- mean(data)
+z <- (xbar-mu0)/(sigma/sqrt(n))
+
+if (pilihan == 1) {   #lower tail test
+z.alpha <- qnorm(1-alpha)
+pval <- pnorm(z)
+}
+else if (pilihan == 2){  #upper tail test
+z.alpha <- qnorm(1-alpha)
+pval <- pnorm(z, lower.tail = FALSE)
+}
+else{  #2 tail test
+z.alpha <- qnorm(1-(alpha/2))
+pval <- 2*pnorm(z)
+}
+
+if (pval <= alpha){
+cat("===========================","\n")
+cat("pvalue =",pval,"\n")
+cat("Keputusan : Tolak H0","\n")
+cat("===========================","\n")
+}
+else{
+cat("===========================","\n")
+cat("pvalue =",pval,"\n")
+cat("Keputusan : GagalTolak H0","\n")
+cat("===========================","\n")
+}
+
+list (z.hitung = z, z.tabel = z.alpha, pvalue = pval)
+}

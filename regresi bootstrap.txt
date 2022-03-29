@@ -1,0 +1,64 @@
+boot_regresi = function(data1,data2,n,rep)
+{
+N = length(data1)
+dummy = c(1:N)
+koef_a = matrix(nrow = rep,ncol=1)
+koef_b = matrix(nrow = rep,ncol=1)
+
+for(i in 1:rep)
+{
+R = sample(dummy,n,replace=T)
+data1_new = data1[R]
+data2_new = data2[R]
+reg = lm(data1_new~data2_new)
+koef_a[i] = reg$coefficients[1]
+koef_b[i] = reg$coefficients[2]
+}
+
+a = as.vector(koef_a)
+mean_boot_a = mean(a)   
+b = as.vector(koef_b)
+mean_boot_b = mean(b)
+
+cat("===============================","\n")
+cat("hasil rata rata bootstrap=",mean_boot_a,"&",mean_boot_b,"\n")
+cat("===============================","\n")
+
+N_boot = rep
+sd_boot_a = sd(a)
+sd_boot_b = sd(b)
+
+BB_a = mean_boot_a - 1.96*(sd_boot_a/sqrt(N_boot))
+BA_a = mean_boot_a + 1.96*(sd_boot_a/sqrt(N_boot))
+BB_b = mean_boot_b - 1.96*(sd_boot_b/sqrt(N_boot))
+BA_b = mean_boot_b + 1.96*(sd_boot_b/sqrt(N_boot))
+
+if(0 >= BB_a & 0 <= BA_a)
+{
+cat("Kesimpulan_a = Gagal Tolak H0","\n")
+}
+else
+{
+cat("Kesimpulan_a = Tolak H0","\n")
+}
+
+cat("===============================","\n")
+
+if(0 >= BB_b & 0 <= BA_b)
+{
+cat("Kesimpulan_b = Gagal Tolak H0","\n")
+}
+else
+{
+cat("Kesimpulan_b = Tolak H0","\n")
+}
+
+par(mfrow = c(2,1))
+hist(a)
+hist(b)
+
+list(a_bootstrap=mean_boot_a,b_bootstrap=mean_boot_b,batas_bawah_a=BB_a,batas_atas_a=BB_a,batas_bawah_b=BB_b,batas_atas_b=BA_b)
+}
+
+#h0 = b=0
+#h1 = b<>0

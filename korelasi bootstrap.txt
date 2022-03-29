@@ -1,0 +1,24 @@
+bootstrap_korel = function(data1,data2,n,rep)
+{
+N = length(data1)
+dummy = c(1:N)
+cor = matrix(nrow = rep,ncol=1)
+
+for(i in 1:rep)
+{
+R = sample(dummy,n,replace=T)
+data1_new = data1[R]
+data2_new = data2[R]
+cor[i] = cor(data1_new,data2_new)   #it depends on the estimate
+}
+#cor = cor
+mean_boot = mean(cor)   #it will always calculate mean
+
+cat("===============================","\n")
+cat("hasil rata rata bootstrap=",mean_boot,"\n")
+cat("===============================","\n")
+
+hist(cor)
+
+list(penaksir.boot = mean_boot)
+}

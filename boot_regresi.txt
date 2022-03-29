@@ -1,0 +1,32 @@
+boot_regresi = function(data1,data2,n,rep)
+{
+N = length(data1)
+dummy = c(1:N)
+koef = matrix(nrow = rep,ncol=1)
+
+for(i in 1:rep)
+{
+R = sample(dummy,n,replace=T)
+data1_new = data1[R]
+data2_new = data2[R]
+reg = lm(data1_new~data2_new-1) #it depends on the estimate
+koef[i] = reg$coefficients[1]
+}
+#lm = lm
+beta = as.vector(koef)
+mean_boot = mean(beta)   #it will always calculate mean
+
+cat("===============================","\n")
+cat("hasil rata rata bootstrap=",mean_boot,"\n")
+cat("===============================","\n")
+
+sd_boot = sd(beta)
+N_boot = rep
+
+BB = mean_boot - 1.96*(sd_boot/sqrt(N_boot))
+BA = mean_boot + 1.96*(sd_boot/sqrt(N_boot))
+
+hist(beta)
+
+list(penaksir.boot = mean_boot,batas_bawah=BB, batas_atas=BA)
+}

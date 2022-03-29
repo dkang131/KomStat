@@ -1,0 +1,25 @@
+#korelasi
+korelasi <- function(x,y)
+{
+  n <- length(x)
+  ssxy <- matrix(nrow=n,ncol=1)
+  ssx <- matrix(nrow=n,ncol=1)
+  ssy <- matrix(nrow=n,ncol=1)
+  ssy2 <- matrix(nrow=n,ncol=1)
+  ssx2 <- matrix(nrow=n,ncol=1)
+  
+  for(i in 1:n){
+    ssxy[i]=x[i]*y[i]
+    ssx[i]=x[i]
+    ssy[i]=y[i]
+    ssx2[i]=x[i]*x[i]
+    ssy2[i]=y[i]*y[i]
+  }
+  jka <- sum(ssxy)
+  jkb <- sum(ssx)
+  jkc <- sum(ssy)
+  jkd <- sum(ssx2)
+  jke <- sum(ssy2)
+  kor <- ((n*jka)-(jkb*jkc))/((sqrt(n*jkd-(jkb)^2))*(sqrt(n*jke-(jkc)^2)))
+  list(kor = kor)
+}

@@ -1,0 +1,20 @@
+varian = function(data)
+{
+
+n = length(data)   #menghitung panjang data
+xbar = mean(data)  #menghitung rata2 data
+
+xx = matrix(nrow=n , ncol=1)
+
+for(i in 1:n)
+{
+
+xx[i] = (data[i]-xbar)^2
+
+}
+
+varians = sum(xx)/(n-1)
+
+list(varians = varians)
+
+}

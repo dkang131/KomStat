@@ -1,0 +1,9 @@
+rata = function(data)
+{
+  
+  n = length(data)   #menghitung panjang data
+  xx = sum(data)
+  rata = xx/n
+  print(rata)
+  
+}

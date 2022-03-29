@@ -1,0 +1,24 @@
+regresi <- function(y,x)
+{
+n <- length(y)
+ybar <- mean(y)
+xbar <- mean(x)
+ssxy <- matrix(nrow=n,ncol=1)
+ssx <- matrix(nrow=n,ncol=1)
+ssy <- matrix(nrow=n,ncol=1)
+ssxx <- matrix(nrow=n,ncol=1)
+
+for(i in 1:n){
+ssxy[i]=x[i]*y[i]
+ssx[i]=x[i]
+ssy[i]=y[i]
+ssxx[i]=x[i]*x[i]
+}
+jka <- sum(ssxy)
+jkb <- sum(ssx)
+jkc <- sum(ssy)
+jkd <- sum(ssxx)
+b <- ((n*jka)-(jkb*jkc))/((n*jkd)-(jkb^2))
+a <- ybar-(b*xbar)
+list(b=b,a=a)
+}

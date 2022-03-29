@@ -1,0 +1,38 @@
+2_sample_test <- function(data1,data2,mu0,pilihan,alpha)
+{
+n1 <- length(data1)
+n2 <- length(data2)
+sigma1 <- sd(data1)
+sigma2 <- sd(data2)
+xbar1 <- mean(data1)
+xbar2 <- mean(data2)
+z <- ((xbar1-xbar2)-mu0)/sqrt(((sigma1^2)/n1)+((sigma2^2)/n2))
+
+if (pilihan == 1) {   #lower tail test
+z.alpha <- qnorm(1-alpha)
+pval <- pnorm(z)
+}
+else if (pilihan == 2){  #upper tail test
+z.alpha <- qnorm(1-alpha)
+pval <- pnorm(z, lower.tail = FALSE)
+}
+else{  #2 tail test
+z.alpha <- qnorm(1-(alpha/2))
+pval <- 2*pnorm(z)
+}
+
+if (pval <= alpha){
+cat("===========================","\n")
+cat("pvalue =",pval,"\n")
+cat("Keputusan : Tolak H0","\n")
+cat("===========================","\n")
+}
+else{
+cat("===========================","\n")
+cat("pvalue =",pval,"\n")
+cat("Keputusan : GagalTolak H0","\n")
+cat("===========================","\n")
+}
+
+list (z.hitung = z, z.tabel = z.alpha, pvalue = pval)
+}

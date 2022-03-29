@@ -1,0 +1,16 @@
+jacknife = function(data)
+{
+
+N = length(data)
+rata = matrix(nrow=N, ncol=1)
+
+for(i in 1:N)
+{
+data_baru = data[-i]
+rata[i] = mean(data_baru)
+}
+rata.jack = mean(data)
+
+list(rata.jacknife=rata.jack)
+
+}

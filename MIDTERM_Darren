@@ -1,0 +1,256 @@
+
+R version 4.1.3 (2022-03-10) -- "One Push-Up"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> #number 1
+> a <- rep(seq(1:3),20);a
+ [1] 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2
+[39] 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3
+> vector <- c(a,1);vector
+ [1] 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2
+[39] 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1
+> 
+> #number 2
+> A <- matrix(c(1,1,3,5,2,6,-2,-1,-3),asrow=T,nrow=3,ncol=3);A
+Error in matrix(c(1, 1, 3, 5, 2, 6, -2, -1, -3), asrow = T, nrow = 3,  : 
+  unused argument (asrow = T)
+> A <- matrix(c(1,1,3,5,2,6,-2,-1,-3),byrow=T,nrow=3,ncol=3);A
+     [,1] [,2] [,3]
+[1,]    1    1    3
+[2,]    5    2    6
+[3,]   -2   -1   -3
+> B <- matrix(c(1,0,2,0,2,0,1,0,-3),byrow=T,nrow=3,ncol=3):B
+Error: object 'B' not found
+> B <- matrix(c(1,0,2,0,2,0,1,0,-3),byrow=T,nrow=3,ncol=3):B
+Error: object 'B' not found
+> B <- matrix(c(1,0,2,0,2,0,1,0,-3),byrow=T,nrow=3,ncol=3);B
+     [,1] [,2] [,3]
+[1,]    1    0    2
+[2,]    0    2    0
+[3,]    1    0   -3
+> C <- A%*%B
+> C
+     [,1] [,2] [,3]
+[1,]    4    2   -7
+[2,]   11    4   -8
+[3,]   -5   -2    5
+> 
+> #number 3
+> for(i in 1:25){
++ total <- ((2^i)/i)+((3^i)/(i^2))
++ }
+> total
+[1] 1357003952
+> for(i in 1:25){
++ total <- ((2^i)/i)+((3^i)/(i^2))
++ hasil <- sum(total)
++ }
+> hasil
+[1] 1357003952
+> total <- matrix(nrow=25,ncol=1)
+> for(i in 1:25){
++ total[i] <- ((2^i)/i)+((3^i)/(i^2))
++ hasil <- sum(total)
++ }
+> hasil
+[1] 2129170437
+> 
+> 
+> #number 4
+> data <- read.csv("C:/Users/Mahasiswa/Downloads/dataETS.csv",sep=";");data
+   Daerah.Sales.Promotion.Outlet.Region
+1                  JAKARTA,205,26,159,1
+2                TANGERANG,206,28,164,1
+3                   BEKASI,254,35,198,1
+4                    BOGOR,246,31,184,1
+5                  BANDUNG,201,21,150,1
+6                 SEMARANG,291,49,208,2
+7                     SOLO,234,30,184,2
+8                    YOGYA,209,30,154,2
+9                 SURABAYA,204,24,149,3
+10              PURWOKERTO,216,31,175,3
+11                  MADIUN,245,32,192,3
+12                   TUBAN,286,47,201,3
+13                  MALANG,312,54,248,3
+14                   KUDUS,265,40,166,2
+15              PEKALONGAN,322,42,287,2
+16                 GRESIK ,315,30,170,3
+17                  BLITAR,244,32,128,3
+18                SUKABUMI,345,23,135,1
+19                  MALANG,255,34,155,3
+20                  BLITAR,270,35,167,3
+21                SIDOARJO,264,35,170,3
+22                  BREBES,270,42,121,2
+23                    BATU,205,50,200,3
+24               INDRAMAYU,219,32,188,1
+25                LAMONGAN,280,44,154,3
+26              PURWAKERTA,300,36,175,1
+27                 MAKASAR,380,50,200,4
+28              BALIKPAPAN,400,52,212,4
+29               PALEMBANG,376,45,187,4
+30                    PALU,350,42,175,4
+31                   MEDAN,325,46,210,4
+32                    RIAU,339,38,145,4
+33                  PADANG,315,32,157,4
+> data <- read.csv("C:/Users/Mahasiswa/Downloads/dataETS.csv",sep=",");data
+       Daerah Sales Promotion Outlet Region
+1     JAKARTA   205        26    159      1
+2   TANGERANG   206        28    164      1
+3      BEKASI   254        35    198      1
+4       BOGOR   246        31    184      1
+5     BANDUNG   201        21    150      1
+6    SEMARANG   291        49    208      2
+7        SOLO   234        30    184      2
+8       YOGYA   209        30    154      2
+9    SURABAYA   204        24    149      3
+10 PURWOKERTO   216        31    175      3
+11     MADIUN   245        32    192      3
+12      TUBAN   286        47    201      3
+13     MALANG   312        54    248      3
+14      KUDUS   265        40    166      2
+15 PEKALONGAN   322        42    287      2
+16    GRESIK    315        30    170      3
+17     BLITAR   244        32    128      3
+18   SUKABUMI   345        23    135      1
+19     MALANG   255        34    155      3
+20     BLITAR   270        35    167      3
+21   SIDOARJO   264        35    170      3
+22     BREBES   270        42    121      2
+23       BATU   205        50    200      3
+24  INDRAMAYU   219        32    188      1
+25   LAMONGAN   280        44    154      3
+26 PURWAKERTA   300        36    175      1
+27    MAKASAR   380        50    200      4
+28 BALIKPAPAN   400        52    212      4
+29  PALEMBANG   376        45    187      4
+30       PALU   350        42    175      4
+31      MEDAN   325        46    210      4
+32       RIAU   339        38    145      4
+33     PADANG   315        32    157      4
+> 
+> #number 4 regression using bootstrap
+> attach(data)
+> source("C:\\Users\\Mahasiswa\\Desktop\\boot_reg_4b.txt")
+> boot_reg(Sales,Outlet,Promotion,20,1000)
+========================================================== 
+Hasil rata rata bootstrap= 154.7398 & -0.142887 & 4.007107 
+========================================================== 
+Decision_a = Reject H0 
+========================================================== 
+Decision_b1 = Reject H0 
+========================================================== 
+Decision_b2 = Reject H0 
+$a_boot
+[1] 154.7398
+
+$Lower_Bound_a
+[1] 151.6106
+
+$Upper_Bound_a
+[1] 157.869
+
+$b1_boot
+[1] -0.142887
+
+$Lower_Bound_b1
+[1] -0.1606228
+
+$Upper_Bound_b1
+[1] -0.1251513
+
+$b2_boot
+[1] 4.007107
+
+$Lower_Bound_b2
+[1] 3.93434
+
+$Upper_Bound_b2
+[1] 4.079874
+
+> 
+> #number 4a testing mean 
+> 
+> #number 4b regression parameters using OLS
+> source("C:\\Users\\Mahasiswa\\Desktop\\multiple_regression_4b.txt")
+> multiple_regression(Sales,Outlet,Promotion)
+$Intercept
+(Intercept) 
+     150.02 
+
+$b1
+         x1 
+-0.06498035 
+
+$b2
+      x2 
+3.759151 
+
+> #number 4a testing mean
+> source("C:\\Users\\Mahasiswa\\Desktop\\test_mean_4a.txt")
+> data
+       Daerah Sales Promotion Outlet Region
+1     JAKARTA   205        26    159      1
+2   TANGERANG   206        28    164      1
+3      BEKASI   254        35    198      1
+4       BOGOR   246        31    184      1
+5     BANDUNG   201        21    150      1
+6    SEMARANG   291        49    208      2
+7        SOLO   234        30    184      2
+8       YOGYA   209        30    154      2
+9    SURABAYA   204        24    149      3
+10 PURWOKERTO   216        31    175      3
+11     MADIUN   245        32    192      3
+12      TUBAN   286        47    201      3
+13     MALANG   312        54    248      3
+14      KUDUS   265        40    166      2
+15 PEKALONGAN   322        42    287      2
+16    GRESIK    315        30    170      3
+17     BLITAR   244        32    128      3
+18   SUKABUMI   345        23    135      1
+19     MALANG   255        34    155      3
+20     BLITAR   270        35    167      3
+21   SIDOARJO   264        35    170      3
+22     BREBES   270        42    121      2
+23       BATU   205        50    200      3
+24  INDRAMAYU   219        32    188      1
+25   LAMONGAN   280        44    154      3
+26 PURWAKERTA   300        36    175      1
+27    MAKASAR   380        50    200      4
+28 BALIKPAPAN   400        52    212      4
+29  PALEMBANG   376        45    187      4
+30       PALU   350        42    175      4
+31      MEDAN   325        46    210      4
+32       RIAU   339        38    145      4
+33     PADANG   315        32    157      4
+> attach(data)
+The following objects are masked from data (pos = 3):
+
+    Daerah, Outlet, Promotion, Region, Sales
+
+> testing(Sales,Region)
+Result = False 
+> source("C:\\Users\\Mahasiswa\\Desktop\\test_mean_4a.txt")
+> testing(Sales,Region)
+Result = False 
+$mean_region4
+[1] 355
+
+$mean_region123
+[1] 256.2692
+
+> 

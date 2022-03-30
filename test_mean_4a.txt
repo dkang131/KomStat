@@ -1,0 +1,16 @@
+testing <- function(data1,data2)
+{
+data1_new = as.vector(subset(data1,data2 == 4))
+data2_new = as.vector(subset(data1,data2 < 4))
+
+mean_data1 = mean(data1_new)
+mean_data2 = mean(data2_new)
+
+if(mean_data2 > mean_data1){
+cat("Result = True","\n")
+}
+else{
+cat("Result = False","\n")
+}
+list(mean_region4 = mean_data1,mean_region123 = mean_data2)
+}

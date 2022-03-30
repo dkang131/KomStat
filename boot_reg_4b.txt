@@ -1,0 +1,74 @@
+boot_reg <- function(y,x1,x2,n,rep){
+
+N <- length(y)
+dummy <- c(1:N)
+koef_a <- matrix(nrow=N,ncol=1)
+koef_b1 <- matrix(nrow=N,ncol=1)
+koef_b2<- matrix(nrow=N,ncol=1)
+
+for(i in 1:rep){
+R = sample(dummy,n,replace=F)
+y_new = y[R]
+x1_new = x1[R]
+x2_new = x2[R]
+reg = lm(y_new ~ x1_new + x2_new)
+koef_a[i] = reg$coefficients[1]
+koef_b1[i] = reg$coefficients[2]
+koef_b2[i] = reg$coefficients[3]
+}
+a = as.vector(koef_a)
+mean_boot_a = mean(a)
+b1 = as.vector(koef_b1)
+mean_boot_b1 = mean(b1)
+b2 = as.vector(koef_b2)
+mean_boot_b2 = mean(b2)
+
+cat("==========================================================","\n")
+cat("Hasil rata rata bootstrap=",mean_boot_a,"&",mean_boot_b1,"&",mean_boot_b2,"\n")
+cat("==========================================================","\n")
+
+N_boot = rep
+sd_boot_a = sd(a)
+sd_boot_b1 = sd(b1)
+sd_boot_b2 = sd(b2)
+
+BB_a = mean_boot_a - 1.96*(sd_boot_a/sqrt(N_boot))
+BA_a = mean_boot_a + 1.96*(sd_boot_a/sqrt(N_boot))
+BB_b1 = mean_boot_b1 - 1.96*(sd_boot_b1/sqrt(N_boot))
+BA_b1 = mean_boot_b1 + 1.96*(sd_boot_b1/sqrt(N_boot))
+BB_b2 = mean_boot_b2 - 1.96*(sd_boot_b2/sqrt(N_boot))
+BA_b2 = mean_boot_b2 + 1.96*(sd_boot_b2/sqrt(N_boot))
+
+if(0 >= BB_a & 0 <= BA_a){
+cat("Decision_a = Fail to Reject H0","\n")
+}
+else{
+cat("Decision_a = Reject H0","\n")
+}
+
+cat("==========================================================","\n")
+
+if(0 >= BB_b1 & 0 <= BA_b1){
+cat("Decision_b1 = Fail to Reject H0","\n")
+}
+else{
+cat("Decision_b1 = Reject H0","\n")
+}
+
+cat("==========================================================","\n")
+
+if(0 >= BB_b2 & 0 <= BA_b2){
+cat("Decision_b2 = Fail to Reject H0","\n")
+}
+else{
+cat("Decision_b2 = Reject H0","\n")
+}
+
+par(mfrow = c(3,1))
+hist(a)
+hist(b1)
+hist(b2)
+
+list(a_boot = mean_boot_a,Lower_Bound_a = BB_a,Upper_Bound_a = BA_a,b1_boot = mean_boot_b1, Lower_Bound_b1 = BB_b1, Upper_Bound_b1 = BA_b1, b2_boot=mean_boot_b2, Lower_Bound_b2 = BB_b2, Upper_Bound_b2 = BA_b2)
+
+}

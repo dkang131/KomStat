@@ -1,0 +1,10 @@
+multiple_regression <- function(y,x1,x2){
+
+reg <- lm(y~x1+x2)
+koef_a <- reg$coefficients[1]
+koef_b1 <- reg$coefficients[2]
+koef_b2 <- reg$coefficients[3]
+
+list(Intercept=koef_a,b1=koef_b1,b2=koef_b2)
+}
+

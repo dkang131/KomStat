@@ -1,0 +1,34 @@
+uji_hipotesa_t <- function(data,mu0,pilihan,alpha){
+n <- length(data)
+s <- sd(data)
+xbar <- mean(data)
+t <- (xbar-mu0)/(s/sqrt(n))
+
+if (pilihan == 1) {   #lower tail test
+t.alpha <- qt(1-alpha,df=n-1)
+pval <- pt(t,df = n-1)
+}
+else if (pilihan == 2){  #upper tail test
+t.alpha <- qt(1-alpha,df=n-1)
+pval <- pt(t,df=n-1, lower.tail = FALSE)
+}
+else{  #2 tail test
+t.alpha <- qt(1-(alpha/2),df=n-1)
+pval <- 2*(pt(t,df=n-1))
+}
+
+if (pval <= alpha){
+cat("===========================","\n")
+cat("pvalue =",pval,"\n")
+cat("Keputusan : Tolak H0","\n")
+cat("===========================","\n")
+}
+else{
+cat("===========================","\n")
+cat("pvalue =",pval,"\n")
+cat("Keputusan : GagalTolak H0","\n")
+cat("===========================","\n")
+}
+
+list (t.hitung = t, t.tabel = t.alpha, pvalue = pval)
+}

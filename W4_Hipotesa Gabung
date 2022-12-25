@@ -1,0 +1,106 @@
+> data <- read.csv("C\Users\darre\Desktop\SEM 4\CompStat\nilai_csv.csv"
+
+> data <- read.csv("C:/Users/darre/Desktop/SEM 4/CompStat/nilai_csv.csv";sep=";")
+Error: unexpected ';' in "data <- read.csv("C:/Users/darre/Desktop/SEM 4/CompStat/nilai_csv.csv";"
+> data <- read.csv("C:/Users/darre/Desktop/SEM 4/CompStat/nilai_csv.csv",sep=";")
+> data
+     ï..Nama Kuis1 ETS Tugas
+1       Jaka    40  78    90
+2   Supriadi    50  60    75
+3      Siska    65 100    85
+4    Syirrul    90  55    88
+5      Dinda    85  90    90
+6      Fajar    50  30    80
+7     M. Eka    60  50    80
+8  Chrisandi    50  50    80
+9     Hendra    50  50    75
+10    Achmad    50  50    80
+11     kadek    60  75    85
+12   kartini    65  55    78
+13 christine    40  60    75
+14   Desneli    60  55    80
+> uji_hipotesa(data$Kuis1,75,1,0.05)
+=========================== 
+pvalue = 1.038157e-05 
+Keputusan : Tolak H0 
+=========================== 
+$z.hitung
+[1] -4.256522
+
+$z.tabel
+[1] 1.644854
+
+$pvalue
+[1] 1.038157e-05
+
+> uji_hipotesa(data$ETS,65,2,0.05)
+=========================== 
+pvalue = 0.7749774 
+Keputusan : GagalTolak H0 
+=========================== 
+$z.hitung
+[1] -0.7553398
+
+$z.tabel
+[1] 1.644854
+
+$pvalue
+[1] 0.7749774
+
+> uji_hipotesa(data$Tugas,80,2,0.05)
+=========================== 
+pvalue = 0.1435916 
+Keputusan : GagalTolak H0 
+=========================== 
+$z.hitung
+[1] 1.064321
+
+$z.tabel
+[1] 1.644854
+
+$pvalue
+[1] 0.1435916
+
+> uji_hipotesa(data$Kuis1,75,1,0.01)
+=========================== 
+pvalue = 1.038157e-05 
+Keputusan : Tolak H0 
+=========================== 
+$z.hitung
+[1] -4.256522
+
+$z.tabel
+[1] 2.326348
+
+$pvalue
+[1] 1.038157e-05
+
+> uji_hipotesa(data$ETS,65,1,0.01)
+=========================== 
+pvalue = 0.2250226 
+Keputusan : GagalTolak H0 
+=========================== 
+$z.hitung
+[1] -0.7553398
+
+$z.tabel
+[1] 2.326348
+
+$pvalue
+[1] 0.2250226
+
+> uji_hipotesa(data$Tugas,80,2,0.01)
+=========================== 
+pvalue = 0.1435916 
+Keputusan : GagalTolak H0 
+=========================== 
+$z.hitung
+[1] 1.064321
+
+$z.tabel
+[1] 2.326348
+
+$pvalue
+[1] 0.1435916
+
+> 
